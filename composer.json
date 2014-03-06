@@ -18,7 +18,8 @@
     "require": {
         "php": ">=5.3.2",
         "dominionenterprises/util": "~1.0",
-        "jenssegers/chef": "dev-master"
+        "jenssegers/chef": "dev-master",
+        "nubs/hiatus": "~1.2"
     },
     "autoload": {
         "psr-4": { "DominionEnterprises\\Chef\\": "src/" }

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c326b781afd0943778d92b226e986099",
+    "hash": "0680951c80dfd688d04848551599e567",
     "packages": [
         {
             "name": "dominionenterprises/util",
@@ -102,6 +102,49 @@
                 "laravel"
             ],
             "time": "2014-02-20 13:31:48"
+        },
+        {
+            "name": "nubs/hiatus",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nubs/hiatus.git",
+                "reference": "1900313914fd70e27e2377d6cde4337d9494ab5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nubs/hiatus/zipball/1900313914fd70e27e2377d6cde4337d9494ab5e",
+                "reference": "1900313914fd70e27e2377d6cde4337d9494ab5e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/hiatus.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Spencer Rinehart",
+                    "email": "anubis@overthemonkey.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A library for executing shell commands with an optional timeout.",
+            "keywords": [
+                "exec",
+                "execution",
+                "shell",
+                "timeout"
+            ],
+            "time": "2013-07-16 15:22:11"
         }
     ],
     "packages-dev": [
