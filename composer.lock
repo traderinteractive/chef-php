@@ -1,0 +1,123 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "c326b781afd0943778d92b226e986099",
+    "packages": [
+        {
+            "name": "dominionenterprises/util",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dominionenterprises/util-php.git",
+                "reference": "ce4f76c01f2a1f804d36ff94a1401f8bfdd313fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dominionenterprises/util-php/zipball/ce4f76c01f2a1f804d36ff94a1401f8bfdd313fd",
+                "reference": "ce4f76c01f2a1f804d36ff94a1401f8bfdd313fd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "dominionenterprises/dws-coding-standard": "~1.1",
+                "lib-libxml": "*",
+                "phpunit/phpunit": "~3.7.19"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "DominionEnterprises": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Spencer Rinehart",
+                    "email": "anubis@overthemonkey.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Jonathan Gaillard",
+                    "email": "jonathan.gaillard@dominionenterprises.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Chad Gray",
+                    "email": "chadwickgray@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A collection of utility classes",
+            "keywords": [
+                "utility"
+            ],
+            "time": "2014-01-16 16:54:21"
+        },
+        {
+            "name": "jenssegers/chef",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/php-chef.git",
+                "reference": "ec1c3a021316d137ad306d9eb5706aa367c6a654"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/php-chef/zipball/ec1c3a021316d137ad306d9eb5706aa367c6a654",
+                "reference": "ec1c3a021316d137ad306d9eb5706aa367c6a654",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Jenssegers\\Chef": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "email": "hello@jenssegers.be"
+                }
+            ],
+            "description": "Opscode Chef API library",
+            "keywords": [
+                "chef",
+                "laravel"
+            ],
+            "time": "2014-02-20 13:31:48"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "jenssegers/chef": 20
+    },
+    "platform": {
+        "php": ">=5.3.2"
+    },
+    "platform-dev": [
+
+    ]
+}
