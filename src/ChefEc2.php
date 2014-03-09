@@ -36,24 +36,6 @@ class ChefEc2
     }
 
     /**
-     * Get the servers in the specified region.
-     *
-     * @param string $region The AWS region to query for servers.
-     * @param array $tags an array of tags to also pull back for each server.
-     *
-     * @return array The servers in the region.
-     */
-    public function getServers($region, array $tags = [])
-    {
-        list($serverOutput, $stderr) = \Hiatus\execX(
-            "{$this->_baseKnifeCommand} ec2 server list",
-            ['--region' => $region, '--tags' => implode(',', $tags)] + $this->_awsCredentialParameters()
-        );
-
-        return ColumnParser::getData($serverOutput);
-    }
-
-    /**
      * Instantiate a new server.
      *
      * @param string $region The AWS region the server is in.
@@ -99,22 +81,6 @@ class ChefEc2
 
         $command = \Hiatus\addArguments("{$this->_baseKnifeCommand} ec2 server create", $fullOptions);
         \Hiatus\execX("{$command} >" . escapeshellarg($progressFile) . ' 2>&1 &');
-    }
-
-    /**
-     * Terminates a specific server.
-     *
-     * @param string $region The AWS region the server is in.
-     * @param string $instanceId The instance id of the server to terminate.
-     *
-     * @return void
-     */
-    public function terminateServer($region, $instanceId)
-    {
-        \Hiatus\execX(
-            "{$this->_baseKnifeCommand} ec2 server delete",
-            ['--region' => $region, '--yes', $instanceId] + $this->_awsCredentialParameters()
-        );
     }
 
     /**
