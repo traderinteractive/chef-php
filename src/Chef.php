@@ -38,6 +38,16 @@ class Chef
     }
 
     /**
+     * Gets the list of nodes.
+     *
+     * @return array The names of the nodes registered in chef.
+     */
+    public function getNodes()
+    {
+        return array_keys((array)$this->_chef->get('/nodes'));
+    }
+
+    /**
      * Delete the given node.
      *
      * @param string $node The name of the node to delete.
