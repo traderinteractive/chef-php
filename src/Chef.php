@@ -40,11 +40,21 @@ class Chef
     /**
      * Gets the list of nodes.
      *
+     * @param string $role The role to query.  If unset, returns all nodes.
+     *
      * @return array The names of the nodes registered in chef.
      */
-    public function getNodes()
+    public function getNodes($role = null)
     {
-        return array_keys((array)$this->_chef->get('/nodes'));
+        if ($role === null) {
+            return array_keys((array)$this->_chef->get('/nodes'));
+        }
+
+        $getNodeName = function($node) {
+            return isset($node->name) ? $node->name : null;
+        };
+
+        return array_filter(array_map($getNodeName, (array)$this->_chef->api('/search/node', 'GET', array('q' => "role:{$role}"))->rows));
     }
 
     /**
