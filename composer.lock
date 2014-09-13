@@ -1,36 +1,37 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "0680951c80dfd688d04848551599e567",
+    "hash": "685149031d25a3b21e96a3ce3a45a408",
     "packages": [
         {
             "name": "dominionenterprises/util",
-            "version": "v1.1.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dominionenterprises/util-php.git",
-                "reference": "ce4f76c01f2a1f804d36ff94a1401f8bfdd313fd"
+                "reference": "784ebca6a60f724633c35ffdbfa59cb14c327f51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dominionenterprises/util-php/zipball/ce4f76c01f2a1f804d36ff94a1401f8bfdd313fd",
-                "reference": "ce4f76c01f2a1f804d36ff94a1401f8bfdd313fd",
+                "url": "https://api.github.com/repos/dominionenterprises/util-php/zipball/784ebca6a60f724633c35ffdbfa59cb14c327f51",
+                "reference": "784ebca6a60f724633c35ffdbfa59cb14c327f51",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "php": "~5.4"
             },
             "require-dev": {
                 "dominionenterprises/dws-coding-standard": "~1.1",
-                "lib-libxml": "*",
-                "phpunit/phpunit": "~3.7.19"
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "DominionEnterprises": "src"
+                "psr-4": {
+                    "DominionEnterprises\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -58,7 +59,7 @@
             "keywords": [
                 "utility"
             ],
-            "time": "2014-01-16 16:54:21"
+            "time": "2014-08-27 16:36:38"
         },
         {
             "name": "jenssegers/chef",
@@ -66,17 +67,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jenssegers/php-chef.git",
-                "reference": "ec1c3a021316d137ad306d9eb5706aa367c6a654"
+                "reference": "f08c853eb4db6d0ef7f0d04953059a347f0948e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/php-chef/zipball/ec1c3a021316d137ad306d9eb5706aa367c6a654",
-                "reference": "ec1c3a021316d137ad306d9eb5706aa367c6a654",
+                "url": "https://api.github.com/repos/jenssegers/php-chef/zipball/f08c853eb4db6d0ef7f0d04953059a347f0948e3",
+                "reference": "f08c853eb4db6d0ef7f0d04953059a347f0948e3",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
+                "ext-mcrypt": "*",
                 "ext-openssl": "*",
                 "php": ">=5.3.0"
             },
@@ -101,7 +103,7 @@
                 "chef",
                 "laravel"
             ],
-            "time": "2014-02-20 13:31:48"
+            "time": "2014-03-25 11:32:29"
         },
         {
             "name": "nubs/hiatus",
@@ -157,8 +159,9 @@
     "stability-flags": {
         "jenssegers/chef": 20
     },
+    "prefer-stable": false,
     "platform": {
-        "php": ">=5.3.2"
+        "php": "~5.4"
     },
     "platform-dev": [
 
