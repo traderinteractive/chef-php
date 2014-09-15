@@ -54,7 +54,7 @@ class Chef
             return isset($node->name) ? $node->name : null;
         };
 
-        return array_filter(array_map($getNodeName, (array)$this->_chef->api('/search/node', 'GET', array('q' => "role:{$role}"))->rows));
+        return array_filter(array_map($getNodeName, (array)$this->_chef->api('/search/node', 'GET', ['q' => "role:{$role}"])->rows));
     }
 
     /**
