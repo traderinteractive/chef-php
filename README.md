@@ -1,4 +1,6 @@
 # Chef
+[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/dominionenterprises/chef-php.svg?style=flat)](https://scrutinizer-ci.com/g/dominionenterprises/chef-php/)
+
 [![Latest Stable Version](http://img.shields.io/packagist/v/dominionenterprises/chef.svg?style=flat)](https://packagist.org/packages/dominionenterprises/chef)
 [![Total Downloads](http://img.shields.io/packagist/dt/dominionenterprises/chef.svg?style=flat)](https://packagist.org/packages/dominionenterprises/chef)
 [![License](http://img.shields.io/packagist/l/dominionenterprises/chef.svg?style=flat)](https://packagist.org/packages/dominionenterprises/chef)
