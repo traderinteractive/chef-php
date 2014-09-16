@@ -1,8 +1,6 @@
 <?php
 namespace DominionEnterprises\Chef;
 
-use DominionEnterprises\Util;
-
 class ChefEc2
 {
     /**
