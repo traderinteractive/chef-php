@@ -1,4 +1,8 @@
 # Chef
+[![Latest Stable Version](http://img.shields.io/packagist/v/dominionenterprises/chef.svg?style=flat)](https://packagist.org/packages/dominionenterprises/chef)
+[![Total Downloads](http://img.shields.io/packagist/dt/dominionenterprises/chef.svg?style=flat)](https://packagist.org/packages/dominionenterprises/chef)
+[![License](http://img.shields.io/packagist/l/dominionenterprises/chef.svg?style=flat)](https://packagist.org/packages/dominionenterprises/chef)
+
 A PHP library that wraps [jenssegers/php-chef](https://github.com/jenssegers/php-chef) and adds some functionality and support for knife-ec2.
 
 ## Requirements
