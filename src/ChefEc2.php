@@ -90,14 +90,18 @@ class ChefEc2
      * @param array $chefOptions Additional options for chef client.  For example: ['--override-runlist' => 'role[foo]']
      * @return void
      */
-    public function updateServers($query, $progressFile, array $options = [], array $chefOptions = [])
+    public function updateServers($query, $progressFile = null, array $options = [], array $chefOptions = [])
     {
         $instanceIdUrl = 'http://169.254.169.254/latest/meta-data/instance-id';
 	$chefOtions = array_merge($chefOptions, ['--json-attributes' => '/etc/chef/first-boot.json']);
         $chefCommand = \Hiatus\addArguments("sudo chef-client -N `curl {$instanceIdUrl}`", $chefOptions);
         $options = array_merge($options, $this->_chefClientParameters(), $this->_ec2SshParameters(), [$query, $chefCommand]);
         $command = \Hiatus\addArguments("{$this->_baseKnifeCommand} ssh", $options);
-        \Hiatus\execX("{$command} >" . escapeshellarg($progressFile) . ' 2>&1 &');
+	if ($progressFile !== null) {
+            \Hiatus\execX("{$command} >" . escapeshellarg($progressFile) . ' 2>&1 &');
+	} else {
+	    passthru($command);
+	}
     }
 
     /**
