@@ -87,17 +87,15 @@ class ChefEc2
      * @param string $query The chef query to specify what servers to update.
      * @param string $progressFile The filename to send the knife output to.
      * @param array $options Additional options for knife ssh.  For example: ['-groups' => 'foo']
+     * @param array $chefOptions Additional options for chef client.  For example: ['--override-runlist' => 'role[foo]']
      * @return void
      */
-    public function updateServers($query, $progressFile, array $options = [])
+    public function updateServers($query, $progressFile, array $options = [], array $chefOptions = [])
     {
         $instanceIdUrl = 'http://169.254.169.254/latest/meta-data/instance-id';
-        $options = array_merge(
-            $options,
-            $this->_chefClientParameters(),
-            $this->_ec2SshParameters(),
-            [$query, "sudo chef-client --json-attributes /etc/chef/first-boot.json -N `curl {$instanceIdUrl}`"]
-        );
+	$chefOtions = array_merge($chefOptions, ['--json-attributes' => '/etc/chef/first-boot.json']);
+        $chefCommand = \Hiatus\addArguments("sudo chef-client -N `curl {$instanceIdUrl}`", $chefOptions);
+        $options = array_merge($options, $this->_chefClientParameters(), $this->_ec2SshParameters(), [$query, $chefCommand]);
         $command = \Hiatus\addArguments("{$this->_baseKnifeCommand} ssh", $options);
         \Hiatus\execX("{$command} >" . escapeshellarg($progressFile) . ' 2>&1 &');
     }
