@@ -93,7 +93,7 @@ class ChefEc2
     public function updateServers($query, $progressFile = null, array $options = [], array $chefOptions = [])
     {
         $instanceIdUrl = 'http://169.254.169.254/latest/meta-data/instance-id';
-	$chefOtions = array_merge($chefOptions, ['--json-attributes' => '/etc/chef/first-boot.json']);
+	$chefOptions = array_merge($chefOptions, ['--json-attributes' => '/etc/chef/first-boot.json']);
         $chefCommand = \Hiatus\addArguments("sudo chef-client -N `curl {$instanceIdUrl}`", $chefOptions);
         $options = array_merge($options, $this->_chefClientParameters(), $this->_ec2SshParameters(), [$query, $chefCommand]);
         $command = \Hiatus\addArguments("{$this->_baseKnifeCommand} ssh", $options);
