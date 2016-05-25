@@ -1,78 +1,24 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "685149031d25a3b21e96a3ce3a45a408",
+    "hash": "26c473c9baebcefbe22b286538f57b8e",
+    "content-hash": "138af5e9260c26a95082ed773c24857c",
     "packages": [
-        {
-            "name": "dominionenterprises/util",
-            "version": "v1.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dominionenterprises/util-php.git",
-                "reference": "784ebca6a60f724633c35ffdbfa59cb14c327f51"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dominionenterprises/util-php/zipball/784ebca6a60f724633c35ffdbfa59cb14c327f51",
-                "reference": "784ebca6a60f724633c35ffdbfa59cb14c327f51",
-                "shasum": ""
-            },
-            "require": {
-                "php": "~5.4"
-            },
-            "require-dev": {
-                "dominionenterprises/dws-coding-standard": "~1.1",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DominionEnterprises\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Spencer Rinehart",
-                    "email": "anubis@overthemonkey.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Jonathan Gaillard",
-                    "email": "jonathan.gaillard@dominionenterprises.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Chad Gray",
-                    "email": "chadwickgray@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A collection of utility classes",
-            "keywords": [
-                "utility"
-            ],
-            "time": "2014-08-27 16:36:38"
-        },
         {
             "name": "jenssegers/chef",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jenssegers/php-chef.git",
-                "reference": "f08c853eb4db6d0ef7f0d04953059a347f0948e3"
+                "reference": "4e2e589954feb4a27f97905b2124d2052e7d4667"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/php-chef/zipball/f08c853eb4db6d0ef7f0d04953059a347f0948e3",
-                "reference": "f08c853eb4db6d0ef7f0d04953059a347f0948e3",
+                "url": "https://api.github.com/repos/jenssegers/php-chef/zipball/4e2e589954feb4a27f97905b2124d2052e7d4667",
+                "reference": "4e2e589954feb4a27f97905b2124d2052e7d4667",
                 "shasum": ""
             },
             "require": {
@@ -103,7 +49,7 @@
                 "chef",
                 "laravel"
             ],
-            "time": "2014-03-25 11:32:29"
+            "time": "2016-02-26 19:08:12"
         },
         {
             "name": "nubs/hiatus",
@@ -146,24 +92,20 @@
                 "shell",
                 "timeout"
             ],
+            "abandoned": "symfony/process",
             "time": "2013-07-16 15:22:11"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "jenssegers/chef": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
-        "php": "~5.4"
+        "php": "~5.4 || ~7.0"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
