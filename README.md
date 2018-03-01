@@ -1,9 +1,13 @@
 # Chef
-[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/dominionenterprises/chef-php.svg?style=flat)](https://scrutinizer-ci.com/g/dominionenterprises/chef-php/)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/traderinteractive/chef-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/traderinteractive/chef-php/?branch=master)
 
-[![Latest Stable Version](http://img.shields.io/packagist/v/dominionenterprises/chef.svg?style=flat)](https://packagist.org/packages/dominionenterprises/chef)
-[![Total Downloads](http://img.shields.io/packagist/dt/dominionenterprises/chef.svg?style=flat)](https://packagist.org/packages/dominionenterprises/chef)
-[![License](http://img.shields.io/packagist/l/dominionenterprises/chef.svg?style=flat)](https://packagist.org/packages/dominionenterprises/chef)
+[![Latest Stable Version](https://poser.pugx.org/traderinteractive/chef/v/stable)](https://packagist.org/packages/traderinteractive/chef)
+[![Latest Unstable Version](https://poser.pugx.org/traderinteractive/chef/v/unstable)](https://packagist.org/packages/traderinteractive/chef)
+[![License](https://poser.pugx.org/traderinteractive/chef/license)](https://packagist.org/packages/traderinteractive/chef)
+
+[![Total Downloads](https://poser.pugx.org/traderinteractive/chef/downloads)](https://packagist.org/packages/traderinteractive/chef)
+[![Daily Downloads](https://poser.pugx.org/traderinteractive/chef/d/daily)](https://packagist.org/packages/traderinteractive/chef)
+[![Monthly Downloads](https://poser.pugx.org/traderinteractive/chef/d/monthly)](https://packagist.org/packages/traderinteractive/chef)
 
 A PHP library that wraps [jenssegers/php-chef](https://github.com/jenssegers/php-chef) and adds some functionality and support for knife-ec2.
 
@@ -18,6 +22,6 @@ This package uses [composer](https://getcomposer.org) so you can just add `domin
 ### Chef API Wrapper
 Once you've created a chef API client using [jenssegers/php-chef], you can instantiate the wrapper and perform actions.  For example:
 ```php
-$chef = new \DominionEnterprises\Chef\Chef($chefApi);
+$chef = new TraderInteractive\Chef\Chef($chefApi);
 $chef->patchDatabag('data', 'item', ['url' => 'http://example.com']);
 ```
