@@ -21,6 +21,6 @@
         "nubs/hiatus": "~1.2"
     },
     "autoload": {
-        "psr-4": { "DominionEnterprises\\Chef\\": "src/" }
+        "psr-4": { "TraderInteractive\\Chef\\": "src/" }
     }
 }

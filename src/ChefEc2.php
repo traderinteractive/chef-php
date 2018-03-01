@@ -1,5 +1,6 @@
 <?php
-namespace DominionEnterprises\Chef;
+
+namespace TraderInteractive\Chef;
 
 class ChefEc2
 {

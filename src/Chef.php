@@ -1,5 +1,6 @@
 <?php
-namespace DominionEnterprises\Chef;
+
+namespace TraderInteractive\Chef;
 
 use Jenssegers\Chef\Chef as ChefApi;
 
