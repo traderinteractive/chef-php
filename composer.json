@@ -1,5 +1,5 @@
 {
-    "name": "dominionenterprises/chef",
+    "name": "traderinteractive/chef",
     "description": "A library that wraps jenssegers/php-chef and adds some functionality and support for knife-ec2.",
     "keywords": ["chef", "knife", "ec2"],
     "authors": [
