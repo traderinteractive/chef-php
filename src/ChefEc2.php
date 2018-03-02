@@ -29,7 +29,7 @@ class ChefEc2
      * @param array  $credentials      The credentials needed to interact with knife-ec2.  Includes awsAccessKeyId and
      *                                 awsSecretAccessKey.
      */
-    public function __construct($baseKnifeCommand, $chefServerUrl, array $credentials)
+    public function __construct(string $baseKnifeCommand, string $chefServerUrl, array $credentials)
     {
         $this->baseKnifeCommand = $baseKnifeCommand;
         $this->chefServerUrl = $chefServerUrl;
@@ -51,14 +51,14 @@ class ChefEc2
      * @return void
      */
     public function createServer(
-        $region,
-        $ami,
-        $flavor,
+        string $region,
+        string $ami,
+        string $flavor,
         array $runList,
-        $progressFile,
+        string $progressFile,
         array $options = [],
         array $tags = [],
-        $chefVersion = '11.8.0'
+        string $chefVersion = '11.8.0'
     ) {
 
         $tagList = [];
@@ -93,8 +93,12 @@ class ChefEc2
      * @param array $chefOptions Additional options for chef client. For example: ['--override-runlist' => 'role[foo]']
      * @return void
      */
-    public function updateServers($query, $progressFile = null, array $options = [], array $chefOptions = [])
-    {
+    public function updateServers(
+        string $query,
+        string $progressFile = null,
+        array $options = [],
+        array $chefOptions = []
+    ) {
         $instanceIdUrl = 'http://169.254.169.254/latest/meta-data/instance-id';
         $chefOptions = array_merge($chefOptions, ['--json-attributes' => '/etc/chef/first-boot.json']);
         $chefCommand = \Hiatus\addArguments("sudo chef-client -N `curl {$instanceIdUrl}`", $chefOptions);
@@ -117,7 +121,7 @@ class ChefEc2
      *
      * @return array The parameters to access AWS via knife-ec2.
      */
-    private function awsCredentialParameters()
+    private function awsCredentialParameters() : array
     {
         return [
             '--aws-access-key-id' => $this->credentials['awsAccessKeyId'],
@@ -130,7 +134,7 @@ class ChefEc2
      *
      * @return array The parameters to access the chef API via knife.
      */
-    private function chefClientParameters()
+    private function chefClientParameters() : array
     {
         return [
             '--server-url' => $this->chefServerUrl,
@@ -144,7 +148,7 @@ class ChefEc2
      *
      * @return array The parameters to access the EC2 ssh servers
      */
-    private function ec2SshParameters()
+    private function ec2SshParameters() : array
     {
         return [
             '--ssh-user' => $this->credentials['ec2SshUser'],

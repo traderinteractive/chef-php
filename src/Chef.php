@@ -30,7 +30,7 @@ class Chef
      *
      * @return void
      */
-    public function patchDatabag($name, $item, array $data)
+    public function patchDatabag(string $name, string $item, array $data)
     {
         $itemUrl = '/data/' . rawurlencode($name) . '/' . rawurlencode($item);
         $data += (array)$this->chef->get($itemUrl);
@@ -45,7 +45,7 @@ class Chef
      *
      * @return array The names of the nodes registered in chef.
      */
-    public function getNodes($role = null)
+    public function getNodes(string $role = null)
     {
         if ($role === null) {
             return array_keys((array)$this->chef->get('/nodes'));
@@ -70,7 +70,7 @@ class Chef
      *
      * @return void
      */
-    public function deleteNode($node)
+    public function deleteNode(string $node)
     {
         $this->chef->delete('/nodes/' . rawurlencode($node));
     }
