@@ -15,7 +15,7 @@ A PHP library that wraps [jenssegers/php-chef](https://github.com/jenssegers/php
 The knife-ec2 integration depends on the knife-ec2 commands being available.
 
 ## Installation
-This package uses [composer](https://getcomposer.org) so you can just add `dominionenterprises/chef` as a dependency to your `composer.json` file.
+This package uses [composer](https://getcomposer.org) so you can just add `traderinteractive/chef` as a dependency to your `composer.json` file.
 
 ## Usage
 
