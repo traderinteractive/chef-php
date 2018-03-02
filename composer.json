@@ -21,7 +21,7 @@
     "require": {
         "php": "^7.0",
         "jenssegers/chef": "dev-master",
-        "nubs/hiatus": "~1.2"
+        "nubs/hiatus": "^1.2"
     },
     "autoload": {
         "psr-4": { "TraderInteractive\\Chef\\": "src/" }
