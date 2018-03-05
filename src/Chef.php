@@ -1,5 +1,6 @@
 <?php
-namespace DominionEnterprises\Chef;
+
+namespace TraderInteractive\Chef;
 
 use Jenssegers\Chef\Chef as ChefApi;
 
@@ -8,7 +9,7 @@ class Chef
     /**
      * @var \Jenssegers\Chef\Chef The chef API
      */
-    private $_chef;
+    private $chef;
 
     /**
      * Construct the Chef Wrapper
@@ -17,7 +18,7 @@ class Chef
      */
     public function __construct(ChefApi $chef)
     {
-        $this->_chef = $chef;
+        $this->chef = $chef;
     }
 
     /**
@@ -29,12 +30,12 @@ class Chef
      *
      * @return void
      */
-    public function patchDatabag($name, $item, array $data)
+    public function patchDatabag(string $name, string $item, array $data)
     {
         $itemUrl = '/data/' . rawurlencode($name) . '/' . rawurlencode($item);
-        $data += (array)$this->_chef->get($itemUrl);
+        $data += (array)$this->chef->get($itemUrl);
 
-        $this->_chef->put($itemUrl, $data);
+        $this->chef->put($itemUrl, $data);
     }
 
     /**
@@ -44,17 +45,22 @@ class Chef
      *
      * @return array The names of the nodes registered in chef.
      */
-    public function getNodes($role = null)
+    public function getNodes(string $role = null)
     {
         if ($role === null) {
-            return array_keys((array)$this->_chef->get('/nodes'));
+            return array_keys((array)$this->chef->get('/nodes'));
         }
 
-        $getNodeName = function($node) {
+        $getNodeName = function ($node) {
             return isset($node->name) ? $node->name : null;
         };
 
-        return array_filter(array_map($getNodeName, (array)$this->_chef->api('/search/node', 'GET', ['q' => "role:{$role}"])->rows));
+        return array_filter(
+            array_map(
+                $getNodeName,
+                (array)$this->chef->api('/search/node', 'GET', ['q' => "role:{$role}"])->rows
+            )
+        );
     }
 
     /**
@@ -64,8 +70,8 @@ class Chef
      *
      * @return void
      */
-    public function deleteNode($node)
+    public function deleteNode(string $node)
     {
-        $this->_chef->delete('/nodes/' . rawurlencode($node));
+        $this->chef->delete('/nodes/' . rawurlencode($node));
     }
 }

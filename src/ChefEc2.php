@@ -1,36 +1,39 @@
 <?php
-namespace DominionEnterprises\Chef;
+
+namespace TraderInteractive\Chef;
 
 class ChefEc2
 {
     /**
      * @var string The base command for knife.
      */
-    private $_baseKnifeCommand;
+    private $baseKnifeCommand;
 
     /**
      * @var string The url for the chef API.
      */
-    private $_chefServerUrl;
+    private $chefServerUrl;
 
     /**
      * @var array The credentials needed to interact with knife-ec2.
      */
-    private $_credentials;
+    private $credentials;
 
     /**
      * Initialize the wrapper around knife-ec2.
      *
-     * @param string $baseKnifeCommand The base command for knife.  could be 'knife' if knife is already in the path.  If using bundler to
-     *     install knife-ec2, you could do something like 'BUNDLE_GEMFILE=/path/to/Gemfile bundle exec knife'.
-     * @param string $chefServerUrl The url for the chef API.
-     * @param array $credentials The credentials needed to interact with knife-ec2.  Includes awsAccessKeyId and awsSecretAccessKey.
+     * @param string $baseKnifeCommand The base command for knife.  could be 'knife' if knife is already in the path.
+     *                                 If using bundler to install knife-ec2, you could do something
+     *                                 like 'BUNDLE_GEMFILE=/path/to/Gemfile bundle exec knife'.
+     * @param string $chefServerUrl    The url for the chef API.
+     * @param array  $credentials      The credentials needed to interact with knife-ec2.  Includes awsAccessKeyId and
+     *                                 awsSecretAccessKey.
      */
-    public function __construct($baseKnifeCommand, $chefServerUrl, array $credentials)
+    public function __construct(string $baseKnifeCommand, string $chefServerUrl, array $credentials)
     {
-        $this->_baseKnifeCommand = $baseKnifeCommand;
-        $this->_chefServerUrl = $chefServerUrl;
-        $this->_credentials = $credentials;
+        $this->baseKnifeCommand = $baseKnifeCommand;
+        $this->chefServerUrl = $chefServerUrl;
+        $this->credentials = $credentials;
     }
 
     /**
@@ -48,16 +51,16 @@ class ChefEc2
      * @return void
      */
     public function createServer(
-        $region,
-        $ami,
-        $flavor,
+        string $region,
+        string $ami,
+        string $flavor,
         array $runList,
-        $progressFile,
+        string $progressFile,
         array $options = [],
         array $tags = [],
-        $chefVersion = '11.8.0'
-    )
-    {
+        string $chefVersion = '11.8.0'
+    ) {
+
         $tagList = [];
         foreach ($tags as $key => $value) {
             $tagList[] = "{$key}={$value}";
@@ -73,11 +76,11 @@ class ChefEc2
         ];
 
         $fullOptions += $options;
-        $fullOptions += $this->_awsCredentialParameters();
-        $fullOptions += $this->_chefClientParameters();
-        $fullOptions += $this->_ec2SshParameters();
+        $fullOptions += $this->awsCredentialParameters();
+        $fullOptions += $this->chefClientParameters();
+        $fullOptions += $this->ec2SshParameters();
 
-        $command = \Hiatus\addArguments("{$this->_baseKnifeCommand} ec2 server create", $fullOptions);
+        $command = \Hiatus\addArguments("{$this->baseKnifeCommand} ec2 server create", $fullOptions);
         \Hiatus\execX("{$command} >" . escapeshellarg($progressFile) . ' 2>&1 &');
     }
 
@@ -87,21 +90,30 @@ class ChefEc2
      * @param string $query The chef query to specify what servers to update.
      * @param string $progressFile The filename to send the knife output to.
      * @param array $options Additional options for knife ssh.  For example: ['-groups' => 'foo']
-     * @param array $chefOptions Additional options for chef client.  For example: ['--override-runlist' => 'role[foo]']
+     * @param array $chefOptions Additional options for chef client. For example: ['--override-runlist' => 'role[foo]']
      * @return void
      */
-    public function updateServers($query, $progressFile = null, array $options = [], array $chefOptions = [])
-    {
+    public function updateServers(
+        string $query,
+        string $progressFile = null,
+        array $options = [],
+        array $chefOptions = []
+    ) {
         $instanceIdUrl = 'http://169.254.169.254/latest/meta-data/instance-id';
-	$chefOptions = array_merge($chefOptions, ['--json-attributes' => '/etc/chef/first-boot.json']);
+        $chefOptions = array_merge($chefOptions, ['--json-attributes' => '/etc/chef/first-boot.json']);
         $chefCommand = \Hiatus\addArguments("sudo chef-client -N `curl {$instanceIdUrl}`", $chefOptions);
-        $options = array_merge($options, $this->_chefClientParameters(), $this->_ec2SshParameters(), [$query, $chefCommand]);
-        $command = \Hiatus\addArguments("{$this->_baseKnifeCommand} ssh", $options);
-	if ($progressFile !== null) {
+        $options = array_merge(
+            $options,
+            $this->chefClientParameters(),
+            $this->ec2SshParameters(),
+            [$query, $chefCommand]
+        );
+        $command = \Hiatus\addArguments("{$this->baseKnifeCommand} ssh", $options);
+        if ($progressFile !== null) {
             \Hiatus\execX("{$command} >" . escapeshellarg($progressFile) . ' 2>&1 &');
-	} else {
-	    passthru($command);
-	}
+        } else {
+            passthru($command);
+        }
     }
 
     /**
@@ -109,11 +121,11 @@ class ChefEc2
      *
      * @return array The parameters to access AWS via knife-ec2.
      */
-    private function _awsCredentialParameters()
+    private function awsCredentialParameters() : array
     {
         return [
-            '--aws-access-key-id' => $this->_credentials['awsAccessKeyId'],
-            '--aws-secret-access-key' => $this->_credentials['awsSecretAccessKey'],
+            '--aws-access-key-id' => $this->credentials['awsAccessKeyId'],
+            '--aws-secret-access-key' => $this->credentials['awsSecretAccessKey'],
         ];
     }
 
@@ -122,12 +134,12 @@ class ChefEc2
      *
      * @return array The parameters to access the chef API via knife.
      */
-    private function _chefClientParameters()
+    private function chefClientParameters() : array
     {
         return [
-            '--server-url' => $this->_chefServerUrl,
-            '--user' => $this->_credentials['chefClientName'],
-            '--key' => $this->_credentials['chefClientKey'],
+            '--server-url' => $this->chefServerUrl,
+            '--user' => $this->credentials['chefClientName'],
+            '--key' => $this->credentials['chefClientKey'],
         ];
     }
 
@@ -136,8 +148,11 @@ class ChefEc2
      *
      * @return array The parameters to access the EC2 ssh servers
      */
-    private function _ec2SshParameters()
+    private function ec2SshParameters() : array
     {
-        return ['--ssh-user' => $this->_credentials['ec2SshUser'], '--identity-file' => $this->_credentials['ec2SshKey']];
+        return [
+            '--ssh-user' => $this->credentials['ec2SshUser'],
+            '--identity-file' => $this->credentials['ec2SshKey'],
+        ];
     }
 }
