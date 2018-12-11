@@ -9,7 +9,7 @@
 [![Daily Downloads](https://poser.pugx.org/traderinteractive/chef/d/daily)](https://packagist.org/packages/traderinteractive/chef)
 [![Monthly Downloads](https://poser.pugx.org/traderinteractive/chef/d/monthly)](https://packagist.org/packages/traderinteractive/chef)
 
-A PHP library that wraps [jenssegers/php-chef](https://github.com/jenssegers/php-chef) and adds some functionality and support for knife-ec2.
+A PHP library that adds some functionality and support for knife-ec2.
 
 ## Requirements
 The knife-ec2 integration depends on the knife-ec2 commands being available.
@@ -20,8 +20,22 @@ This package uses [composer](https://getcomposer.org) so you can just add `trade
 ## Usage
 
 ### Chef API Wrapper
-Once you've created a chef API client using [jenssegers/php-chef], you can instantiate the wrapper and perform actions.  For example:
 ```php
-$chef = new TraderInteractive\Chef\Chef($chefApi);
-$chef->patchDatabag('data', 'item', ['url' => 'http://example.com']);
+$chefEc2 = new TraderInteractive\Chef\ChefEc2(
+    'bundle exec knife',
+    $chefServer,
+    [
+        'chefClientName' => $chefClientName,
+        'chefClientKey' => $chefClientKey,
+        'awsAccessKeyId' => $awsId,
+        'awsSecretAccessKey' => $awsSecret,
+        'ec2SshUser' => $ec2SshUser,
+        'ec2SshKey' => $sshKey,
+    ]
+);
+
+$chefEc2->updateServers("role:{$roleToQuery}", null, [], ['--override-runlist' => "role[{$roleToExecute}]", '--no-color']);
 ```
+
+## Upgrading from old versions
+Version 3.0 removed the class TraderInteractive\Chef\Chef.  The interface was not compatible with PHP 7.
